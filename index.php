@@ -23,7 +23,7 @@ try {
             admin();
             break;
         default:
-            
+            accueil();
             break;
     }
 }

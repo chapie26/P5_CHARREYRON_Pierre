@@ -10,24 +10,15 @@
     <body>
         <nav class="navbar">
             <ol>
-                <?php
-                if(isAuthentication()) {
-                ?>
+                <?php if(isAuthemtication()): ?>
+                    <?php if(isAdmin()): ?>
+                        <li><a href="index.php?action=admin">Administration</a></li>
+                    <?php endif; ?>
                     <li><a href="index.php?action=disconnectUser">Déconnexion</a></li>
-                <?php
-                    if(isAdmin()) {
-                        ?>
-                            <li><a href="index.php?action=admin">Administration</a></li>
-                        <?php
-                    }
-                }
-                else {
-                ?>
+                <?php else: ?>
                     <li><a href="index.php?action=newUser">Inscription</a></li>
                     <li><a href="index.php?action=connect">Connexion</a></li>
-                <?php
-                }
-                ?>
+                <?php endif; ?>
             </ol>
         </nav>
         <main class="contenu">

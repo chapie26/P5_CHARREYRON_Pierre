@@ -1,0 +1,8 @@
+{
+    "name": "pierre/p5_charreyron_pierre",
+    "description": "reference les films",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {}
+}

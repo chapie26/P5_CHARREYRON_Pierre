@@ -109,6 +109,10 @@ function commentValided() {
     }
 }
 
+function accueil() {
+    require('view/frontend/accueil.php');
+}
+
 function getMessage($e) {
     $errorMessage = $e->getMessage();
     require('view/frontend/errorView.php');
