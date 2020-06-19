@@ -30,7 +30,7 @@ function addUser() {
         throw new Exception ('Le formulaire n\'est pas rempli ou une erreur est survenu');
     }
     if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-        $newMember = $user->register($_POST['pseudo'], $_POST['pass'], $_POST['avatar_name']);
+        $newMember = $user->register($_POST['pseudo'], $_POST['pass'], 'public/upload/image/'.basename("file".time().".".$extension));
         if ($newMember === null || !$newMember) {
             throw new Exception('Login déjà utilisé');
         }
