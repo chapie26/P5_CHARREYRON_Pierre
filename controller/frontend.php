@@ -17,6 +17,18 @@ function addUser() {
             $extension_autoriser = array('bmp', 'png', 'gif', 'jpg', 'jpeg');
             if(in_array($extension, $extension_autoriser)) {
                 move_uploaded_file($_FILES['file']['tmp_name'], 'public/upload/image/'.basename("file".time().".".$extension));
+                if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
+                    $newMember = $user->register($_POST['pseudo'], $_POST['pass'], 'public/upload/image/'.basename("file".time().".".$extension));
+                    if ($newMember === null || !$newMember) {
+                        throw new Exception('Login déjà utilisé');
+                    }
+                    else {
+                        require('view/frontend/connection.php');
+                    }
+                }
+                else {
+                    throw new Exception ('Impossible d\'ajouter le membre!');
+                }
             }
             else {
                 throw new Exception ('Le fichier n\'a pas l\'extension autoriser');
@@ -26,11 +38,8 @@ function addUser() {
             throw new Exception ('Le fichier est trop gros');
         }
     }
-    else {
-        throw new Exception ('Le formulaire n\'est pas rempli ou une erreur est survenu');
-    }
-    if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-        $newMember = $user->register($_POST['pseudo'], $_POST['pass'], 'public/upload/image/'.basename("file".time().".".$extension));
+    elseif (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
+        $newMember = $user->register($_POST['pseudo'], $_POST['pass']);
         if ($newMember === null || !$newMember) {
             throw new Exception('Login déjà utilisé');
         }
