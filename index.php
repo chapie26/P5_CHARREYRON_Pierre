@@ -1,5 +1,5 @@
 <?php
-session_strart();
+session_start();
 require('controller/frontend.php');
 
 try {
@@ -20,7 +20,7 @@ try {
             connect();
             break;
         case 'admin';
-            admin();
+            isAdmin();
             break;
         default:
             accueil();

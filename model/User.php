@@ -1,24 +1,25 @@
 <?php
 
-namespace Chapie\Blog\model;
+namespace model;
 
-require_once('model/Manager.php');
+require('vendor/autoload.php');
+use model\Manager;
 
 class User extends Manager {
-    public function register($pseudo, $pass) {
+    public function register($pseudo, $pass, $avatar_name) {
         // Ajouter controle pas de doublon
         $db = $this->dbConnect();
-        $regist = $db->prepare('SELECT * FROM member WHERE pseudo = ?');
-        $regist->execute(array($login_mail));
-        $member = $regist->fetch();
+        $verif = $db->prepare('SELECT * FROM member WHERE pseudo = ?');
+        $verif->execute(array($pseudo));
+        $member = $verif->fetch();
 
         if ($member) {
             return null;
         }
         else {
             $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-            $regist = $db->prepare('INSERT INTO member (pseudo, pass, admin) VALUES (?,?,0)');
-            $newMember = $regist->execute(array($pseudo, $pass_hash));
+            $regist = $db->prepare('INSERT INTO member (pseudo, pass, admin, avatar_name) VALUES (?,?,0,?)');
+            $newMember = $regist->execute(array($pseudo, $pass_hash, $avatar_name));
             return $newMember;
         }
     }

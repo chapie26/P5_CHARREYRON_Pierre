@@ -1,16 +1,17 @@
 <?php
 
-require_once('model/Comment.php');
-require_once('model/User.php');
+require('vendor/autoload.php');
+use model\Comment;
+use model\User;
 
 function newUser() {
     require('view/frontend/registration.php');
 }
 
 function addUser() {
-    $user = new Chapie\Blog\model\User();
+    $user = new User();
     if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-        $newMember = $user->register($_POST['pseudo'], $_POST['pass']);
+        $newMember = $user->register($_POST['pseudo'], $_POST['pass'], $_POST['file']);
         if ($newMember === null || !$newMember) {
             throw new Exception('Login déjà utilisé');
         }
@@ -24,15 +25,15 @@ function addUser() {
 }
 
 function connectUser() {
-    $member = new Chapie\Blog\model\User();
+    $user = new User();
 
-    $connectMember = $member->signin($_POST['pseudo'], $_POST['pass']);
+    $connectMember = $user->signin($_POST['pseudo'], $_POST['pass']);
     if (!$connectMember){
         throw new Exception('Connexion impossible');
     }
     else {
         $_SESSION['admin'] = $connectMember['admin'];
-        $_SESSION['pseudo'] = $connectMember['login_mail'];
+        $_SESSION['pseudo'] = $connectMember['pseudo'];
         $_SESSION['user_id'] = $connectMember['id'];
         header('Location: index.php');
     }
@@ -67,7 +68,7 @@ function isAuthentication() {
 }
 
 function administration() {
-    $commentManager = new Chapie\Blog\model\CommentManager();
+    $commentManager = new CommentManager();
     if (isAdmin()) {
         $flags = $commentManager->flagedComments();
 
@@ -79,13 +80,13 @@ function administration() {
 }
 
 function isFlag() {
-    $commentManager = new Chapie\Blog\model\CommentManager();
+    $commentManager = new CommentManager();
     $flag = $commentManager->flagComment($_GET["post_id"], $_GET["id"]);
     header('Location: index.php');
 }
 
 function commentDeleted() {
-    $commentManager = new Chapie\Blog\model\CommentManager();
+    $commentManager = new CommentManager();
 
     if (isAdmin() && isset($_GET['id']) && $_GET['id'] > 0) {
         $deletePost = $commentManager->deleteComment($_GET['id']);
@@ -98,7 +99,7 @@ function commentDeleted() {
 }
 
 function commentValided() {
-    $commentManager = new Chapie\Blog\model\CommentManager();
+    $commentManager = new CommentManager();
 
     if (isAdmin() && isset($_GET['id']) && $_GET['id'] > 0) {
         $noFlag = $commentManager->validComment($_GET['id']);

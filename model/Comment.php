@@ -1,8 +1,9 @@
 <?php
 
-namespace Chapie\Blog\model;
+namespace model;
 
-require_once('model/Manager.php');
+require('vendor/autoload.php');
+use model\Manager;
 
 class CommentManager extends Manager {
     public function getComments($movieId) {

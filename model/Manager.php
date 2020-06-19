@@ -1,6 +1,6 @@
 <?php
 
-namespace Chapie\Blog\model;
+namespace model;
 
 class Manager {
     protected function dbConnect() {

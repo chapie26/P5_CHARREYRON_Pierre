@@ -10,7 +10,7 @@
     <body>
         <nav class="navbar">
             <ol>
-                <?php if(isAuthemtication()): ?>
+                <?php if(isAuthentication()): ?>
                     <?php if(isAdmin()): ?>
                         <li><a href="index.php?action=admin">Administration</a></li>
                     <?php endif; ?>
