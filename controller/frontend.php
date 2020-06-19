@@ -10,8 +10,27 @@ function newUser() {
 
 function addUser() {
     $user = new User();
+    if(isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
+        if($_FILES['file']['size'] <= 10240) {
+            $info = pathinfo($_FILES['file']['name']);
+            $extension = $info['extension'];
+            $extension_autoriser = array('bmp', 'png', 'gif', 'jpg', 'jpeg');
+            if(in_array($extension, $extension_autoriser)) {
+                move_uploaded_file($_FILES['file']['tmp_name'], 'public/upload/image/'.basename("file".time().".".$extension));
+            }
+            else {
+                throw new Exception ('Le fichier n\'a pas l\'extension autoriser');
+            }
+        }
+        else {
+            throw new Exception ('Le fichier est trop gros');
+        }
+    }
+    else {
+        throw new Exception ('Le formulaire n\'est pas rempli ou une erreur est survenu');
+    }
     if (!empty($_POST['pseudo']) && !empty($_POST['pass'])) {
-        $newMember = $user->register($_POST['pseudo'], $_POST['pass'], $_POST['file']);
+        $newMember = $user->register($_POST['pseudo'], $_POST['pass'], $_POST['avatar_name']);
         if ($newMember === null || !$newMember) {
             throw new Exception('Login déjà utilisé');
         }
