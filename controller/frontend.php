@@ -54,6 +54,7 @@ function connectUser() {
         $_SESSION['admin'] = $connectMember['admin'];
         $_SESSION['pseudo'] = $connectMember['pseudo'];
         $_SESSION['user_id'] = $connectMember['id'];
+        $_SESSION['avatar'] = $connectMember['avatar_name'];
         header('Location: index.php');
     }
 }
