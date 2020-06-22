@@ -22,6 +22,12 @@ try {
         case 'admin';
             isAdmin();
             break;
+        case 'movies';
+            movies();
+            break;
+        case 'tvShows';
+            tvShows();
+            break;
         default:
             accueil();
             break;

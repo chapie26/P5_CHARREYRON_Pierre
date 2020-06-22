@@ -143,6 +143,14 @@ function accueil() {
     require('view/frontend/accueil.php');
 }
 
+function movies() {
+    require('view/frontend/movie.php');
+}
+
+function tvShows() {
+    require('view/frontend/tv_show.php');
+}
+
 function getMessage($e) {
     $errorMessage = $e->getMessage();
     require('view/frontend/errorView.php');

@@ -20,9 +20,14 @@
                     <li><a href="index.php?action=connect">Connexion</a></li>
                 <?php endif; ?>
             </ol>
+            <ol>
+                <li><a href="index.php?action=movies">FILMS</a></li>
+                <li><a href="index.php?action=tvShows">SÉRIES</a></li>
+            </ol>
         </nav>
         <main class="contenu">
             <?= $content ?>
         </main>
+        <script type="text/javascript" src="/OCP5/public/javascript/imdb_api.js" async></script>
     </body>
 </html>
