@@ -22,7 +22,7 @@ const movieInterval = setInterval(() => {
                 for (let index = 0; index < movie.results.length; index++) {
                     const item = movie.results[index];
                     const container = document.createElement('a');
-                    container.setAttribute('href', `/movie/${item.id}` );
+                    container.setAttribute('href', `/OCP5/index.php?action=movieDetail&id=${item.id}` );
                     container.classList.add('movieTitle');
                     const title = document.createTextNode(item.title);
                     const image = document.createElement('img');

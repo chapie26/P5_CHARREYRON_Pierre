@@ -151,7 +151,43 @@ function tvShows() {
     require('view/frontend/tv_show.php');
 }
 
+function tvShowDetail() {
+    $imageUrl = 'http://image.tmdb.org/t/p/w185';
+    $credits = getCredits("tv", $_GET["id"]);
+    $data = getDetails("tv", $_GET["id"]);
+    require('view/frontend/tv_showDetail.php');
+}
+
+function movieDetail() {
+    $imageUrl = 'http://image.tmdb.org/t/p/w185';
+    $credits = getCredits("movie", $_GET["id"]);
+    $data = getDetails("movie", $_GET["id"]);
+    require('view/frontend/movieDetail.php');
+}
+
 function getMessage($e) {
     $errorMessage = $e->getMessage();
     require('view/frontend/errorView.php');
+}
+
+// ********************************************
+// * ------------PRIVATE FUNCTION------------ *
+// ********************************************
+
+function getDetails($type, $imdb_id) {
+    $burl = "https://api.themoviedb.org/3/";
+    $api_key = "76cebbae31140d094e15deb2671b11a6";
+    $language = "fr";
+    $responseDetail = file_get_contents($burl . $type . "/" . $imdb_id . "?api_key=" . $api_key . "&language=" . $language);
+    $data = json_decode($responseDetail);
+    return $data;
+}
+
+function getCredits($type, $imdb_id) {
+    $burl = "https://api.themoviedb.org/3/";
+    $api_key = "76cebbae31140d094e15deb2671b11a6";
+    $language = "fr";
+    $responseCredit = file_get_contents($burl . $type . "/" . $imdb_id . "/credits?api_key=" . $api_key . "&language=" . $language);
+    $credits = json_decode($responseCredit);
+    return $credits;
 }

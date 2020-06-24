@@ -23,6 +23,7 @@
             <ol>
                 <li><a href="index.php?action=movies">FILMS</a></li>
                 <li><a href="index.php?action=tvShows">SÉRIES</a></li>
+                <li><a href="index.php">ACCUEIL</a></li>
             </ol>
         </nav>
         <main class="contenu">

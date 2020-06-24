@@ -4,6 +4,9 @@ require('controller/frontend.php');
 
 try {
     switch($_GET['action']) {
+        case 'accueil';
+            accueil();
+            break;
         case 'newUser';
             newUser();
             break;
@@ -27,6 +30,12 @@ try {
             break;
         case 'tvShows';
             tvShows();
+            break;
+        case 'tvShowDetail';
+            tvShowDetail();
+            break;
+        case 'movieDetail';
+            movieDetail();
             break;
         default:
             accueil();

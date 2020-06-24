@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<h1>HELLO THE WORLD!!!!!!!!!!!</h1>
+<h1 class="movieLast">Derniers films à l'affiche</h1>
 <?php
 if(isAuthentication()) {
     if($_SESSION['avatar'] !== null) {
@@ -14,6 +14,10 @@ if(isAuthentication()) {
 }
 ?>
 
+<div id="lastMovies"></div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
+
+<script type="text/javascript" src="/OCP5/public/javascript/accueil.js" async></script>
