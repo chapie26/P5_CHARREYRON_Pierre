@@ -4,38 +4,50 @@ require('controller/frontend.php');
 
 try {
     switch($_GET['action']) {
-        case 'accueil';
+        case 'accueil':
             accueil();
             break;
-        case 'newUser';
+        case 'newUser':
             newUser();
             break;
-        case 'addUser';
+        case 'addUser':
             addUser();
             break;
-        case 'connectUser';
+        case 'connectUser':
             connectUser();
             break;
-        case 'disconnectUser';
+        case 'disconnectUser':
             disconnectUser();
             break;
-        case 'connect';
+        case 'connect':
             connect();
             break;
-        case 'admin';
-            isAdmin();
+        case 'admin':
+            administration();
             break;
-        case 'movies';
+        case 'movies':
             movies();
             break;
-        case 'tvShows';
+        case 'tvShows':
             tvShows();
             break;
-        case 'tvShowDetail';
+        case 'tvShowDetail':
             tvShowDetail();
             break;
-        case 'movieDetail';
+        case 'movieDetail':
             movieDetail();
+            break;
+        case 'addComment':
+            addComment();
+            break;
+        case 'flag':
+            isFlag();
+            break;
+        case 'deleteComment':
+            commentDeleted();
+            break;
+        case 'validComment':
+            commentValided();
             break;
         default:
             accueil();

@@ -39,23 +39,23 @@
     </div>
     <p id="synopsis"><?= $data->overview ?></p>
     <div>
-    <h2>ACTEURS ET ACTRICES</h2>
-    <div id="portrait">
-        <?php for ($index = 0; $index < 8 && $index < count($credits->cast); $index++) { ?>
-        <div id="imgName">
-            <?php if ($credits->cast[$index]->profile_path != null) { ?>
-            <img id="imgPortrait" src="<?= $imageUrl . $credits->cast[$index]->profile_path ?>">
-            <?php } else { ?>
-            <img id="notFoundActeur" src="public/images/avatar_default.png">
+        <h2>ACTEURS ET ACTRICES</h2>
+        <div id="portrait">
+            <?php for ($index = 0; $index < 8 && $index < count($credits->cast); $index++) { ?>
+            <div id="imgName">
+                <?php if ($credits->cast[$index]->profile_path != null) { ?>
+                <img id="imgPortrait" src="<?= $imageUrl . $credits->cast[$index]->profile_path ?>">
+                <?php } else { ?>
+                <img id="notFoundActeur" src="public/images/avatar_default.png">
+                <?php } ?>
+                <h3><?=$credits->cast[$index]->name ?></h3>
+                <h4><?=$credits->cast[$index]->character ?></h4>
+            </div>
             <?php } ?>
-            <h3><?=$credits->cast[$index]->name ?></h3>
-            <h4><?=$credits->cast[$index]->character ?></h4>
         </div>
-        <?php } ?>
-    </div>
     </div>
 
+<?php require('commentView.php'); ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
-<!-- <script type="text/javascript" src="/OCP5/public/javascript/movie.js" async></script> -->

@@ -9,22 +9,20 @@
 
     <body>
         <nav class="navbar">
-            <ol>
+            <ul>
+                <li class="align"><a href="index.php">ACCUEIL</a></li>
+                <li class="align"><a href="index.php?action=movies">FILMS</a></li>
+                <li class="align"><a href="index.php?action=tvShows">SÉRIES</a></li>
                 <?php if(isAuthentication()): ?>
                     <?php if(isAdmin()): ?>
-                        <li><a href="index.php?action=admin">Administration</a></li>
+                        <li class="align"><a href="index.php?action=admin">Administration</a></li>
                     <?php endif; ?>
-                    <li><a href="index.php?action=disconnectUser">Déconnexion</a></li>
+                    <li class="align"><a href="index.php?action=disconnectUser">Déconnexion</a></li>
                 <?php else: ?>
-                    <li><a href="index.php?action=newUser">Inscription</a></li>
-                    <li><a href="index.php?action=connect">Connexion</a></li>
+                    <li class="align"><a href="index.php?action=newUser">Inscription</a></li>
+                    <li class="align"><a href="index.php?action=connect">Connexion</a></li>
                 <?php endif; ?>
-            </ol>
-            <ol>
-                <li><a href="index.php?action=movies">FILMS</a></li>
-                <li><a href="index.php?action=tvShows">SÉRIES</a></li>
-                <li><a href="index.php">ACCUEIL</a></li>
-            </ol>
+            </ul>
         </nav>
         <main class="contenu">
             <?= $content ?>
